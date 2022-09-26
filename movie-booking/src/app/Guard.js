@@ -14,6 +14,7 @@ const checkAuth = () => {
     if (!localStorage.getItem("token")) {
         return true;
     }
+    alert("Vui lòng đăng nhập");
     return false;
 };
 
@@ -21,6 +22,7 @@ const checkLogin = () => {
     if (localStorage.getItem("token")) {
         return true;
     }
+    alert("Vui lòng đăng nhập");
     return false;
 };
 

@@ -1,0 +1,86 @@
+.seatBox:hover .unselected {
+    background-color: #f8b030;
+}
+
+button.seatBox {
+    box-shadow: none;
+    border: none;
+    background-color: transparent;
+    padding: 0.2rem;
+}
+
+.seat {
+    height: 22px;
+    border: 2px solid #4d4d4d;
+    border-radius: 5px;
+    margin-bottom: 2px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-width: 2.4rem;
+}
+
+.seattt {
+    height: 0;
+    width: 80%;
+    margin: auto;
+    border-radius: 3px 3px 100% 100%;
+    background-color: #4d4d4d;
+}
+
+.seat:first-child::before {
+    content: "";
+    height: 10px;
+    width: 1px;
+    background-color: #4d4d4d;
+    margin: 3px 3px;
+    border-radius: 5px;
+}
+
+.seat:first-child::after {
+    content: "";
+    height: 10px;
+    width: 1px;
+    background-color: #4d4d4d;
+    margin: 3px 3px;
+    border-radius: 5px;
+}
+
+.seatRowNum {
+    color: #fff;
+    position: absolute;
+    top: 0;
+    left: 15px;
+    width: 5%;
+    text-align: start;
+}
+
+.selected {
+    background-color: #f8b030 !important;
+    border-color: #f8b030 !important;
+}
+
+.selected:hover {
+    background-color: #f8b030 !important;
+    border-color: #f8b030 !important;
+}
+
+.booked {
+    background-color: #4d4d4d !important;
+    border-color: #4d4d4d !important;
+}
+
+.booked:hover {
+    background-color: #4d4d4d !important;
+    border-color: #4d4d4d !important;
+}
+
+.vip {
+    background-color: transparent;
+    border-color: #f8db46;
+}
+
+.vip:hover {
+    background-color: transparent;
+    border-color: #f8db46;
+}

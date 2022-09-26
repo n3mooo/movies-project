@@ -1,0 +1,78 @@
+.navBar {
+    position: relative;
+    background-color: #fff;
+    padding: 0.6rem 1.8rem;
+    border-radius: 20px;
+    width: 100%;
+    box-shadow: 0 16px 32px rgba(0, 0, 0, 0.1)
+}
+
+.navLink a {
+    display: block;
+    padding: 0.5rem;
+    color: #6c757d;
+    font-size: 14px;
+    line-height: 22px;
+    font-weight: 700;
+    user-select: none;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.navLink a.active {
+    color: #fd7e14 !important;
+}
+
+.navLink a:hover {
+    color: #000;
+}
+
+.btnNav {
+    font-size: 14px;
+    line-height: 22px;
+    font-weight: 700;
+    height: 36px;
+    border-radius: 8px;
+    padding: 0 12px;
+}
+
+.navBrand {
+    position: absolute;
+    left: 0;
+    font-weight: 700;
+    color: #000;
+    padding-left: 1.8rem;
+}
+
+.navBrand:hover {
+    color: #000 !important;
+}
+
+.navAction {
+    position: absolute;
+    right: 0;
+    gap: 0.7rem;
+}
+
+@media screen and (max-width: 992px) {
+    .navBrand {
+        position: static;
+        padding-left: 0;
+        padding: 0 0.5rem;
+    }
+
+    .navAction {
+        position: static;
+        display: flex;
+        flex-flow: row wrap;
+        align-items: center;
+        gap: 0.7rem;
+        padding-top: 0.5rem;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    nav {
+        justify-content: center !important;
+    }
+}
