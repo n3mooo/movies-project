@@ -1,6 +1,7 @@
 import clsx from "clsx";
 import { fetchBoxOfficeAction } from "features/home/action";
 import React, { useState } from "react";
+import { useEffect } from "react";
 import { Accordion, Button, Col, Container, Row, Spinner, Tab, Tabs } from "react-bootstrap";
 import Moment from "react-moment";
 import { useDispatch, useSelector } from "react-redux";
@@ -21,15 +22,19 @@ function Detail() {
         await dispatch(fetchBoxOfficeAction(id));
     };
 
-    if (!selectedMovie || !cinemas)
-        return (
-            <div
-                style={{ width: "100%", textAlign: "center", paddingTop: "20vh", height: "100vh" }}>
-                <Spinner animation='border' />
-            </div>
-        );
+    const descFormat = selectedMovie?.moTa.slice(3, selectedMovie?.moTa.length - 4);
 
-    const descFormat = selectedMovie.moTa.slice(3, selectedMovie.moTa.length - 4);
+    setTimeout(() => {
+        if (!selectedMovie || !cinemas) history.push("/");
+    }, 2000);
+
+    useEffect(() => {
+        setTimeout(() => {
+            if (!selectedMovie || !cinemas) history.push("/");
+        });
+
+        clearTimeout();
+    });
 
     return (
         <>
@@ -58,7 +63,7 @@ function Detail() {
                                     <Col xs={12} sm={6} md={4} className={styles.imgBox}>
                                         <div style={{ margin: "auto", width: "fit-content" }}>
                                             <img
-                                                src={selectedMovie.hinhAnh}
+                                                src={selectedMovie?.hinhAnh}
                                                 alt=''
                                                 className={clsx("fadeInLeft")}
                                             />
@@ -68,7 +73,7 @@ function Detail() {
                                         <div className={clsx("fadeInRight", styles.text)}>
                                             <span>
                                                 <Moment format='DD-MM-YYYY'>
-                                                    {selectedMovie.ngayKhoiChieu}
+                                                    {selectedMovie?.ngayKhoiChieu}
                                                 </Moment>
                                             </span>
                                             <div
@@ -92,7 +97,7 @@ function Detail() {
                                 <div className={clsx("fadeInRight", styles.textMb)}>
                                     <span>
                                         <Moment format='DD-MM-YYYY'>
-                                            {selectedMovie.ngayKhoiChieu}
+                                            {selectedMovie?.ngayKhoiChieu}
                                         </Moment>
                                     </span>
                                     <div
@@ -175,7 +180,7 @@ function Detail() {
                                                                         <Col
                                                                             className='w-100 g-4'
                                                                             key={
-                                                                                selectedMovie.maPhim
+                                                                                selectedMovie?.maPhim
                                                                             }>
                                                                             <div
                                                                                 className={
@@ -187,7 +192,7 @@ function Detail() {
                                                                                     }>
                                                                                     <img
                                                                                         src={
-                                                                                            selectedMovie.hinhAnh
+                                                                                            selectedMovie?.hinhAnh
                                                                                         }
                                                                                         alt=''
                                                                                     />
@@ -217,14 +222,14 @@ function Detail() {
                                                                                             styles.name
                                                                                         }>
                                                                                         {
-                                                                                            selectedMovie.tenPhim
+                                                                                            selectedMovie?.tenPhim
                                                                                         }
                                                                                     </h2>
                                                                                     <div
                                                                                         className={
                                                                                             styles.schedule
                                                                                         }>
-                                                                                        {cinemas.lichChieuPhim.map(
+                                                                                        {cinemas?.lichChieuPhim.map(
                                                                                             (
                                                                                                 schedule
                                                                                             ) => {
@@ -242,7 +247,7 @@ function Detail() {
                                                                                                             );
                                                                                                             history.push(
                                                                                                                 "/booking/" +
-                                                                                                                    selectedMovie.biDanh
+                                                                                                                    selectedMovie?.biDanh
                                                                                                             );
                                                                                                         }}>
                                                                                                         <Moment format='DD-MM-YY ~ HH:mm'>

@@ -46,8 +46,10 @@ function TicketList(props) {
             <Row className='mt-3 justify-content-center align-items-center m-auto'>
                 <Col
                     xs={12}
-                    className='d-flex flex-column justify-content-center align-items-center align-items-sm-start mb-3 mb-sm-3'
-                    style={{ maxWidth: 300 }}>
+                    className={clsx(
+                        "d-flex flex-column justify-content-center justify-content-lg-end align-items-center align-items-sm-start mb-3 mb-sm-3 ms-lg-3",
+                        styles.boxTicket
+                    )}>
                     <span
                         className='text-white mb-3'
                         style={{

@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import SeatList from "features/booking/components/SeatList";
 import TicketList from "features/booking/components/TicketList";
-import React from "react";
+import React, { useEffect } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
@@ -9,12 +9,17 @@ import styles from "./style.module.css";
 
 function Booking() {
     const history = useHistory();
-    const { thongTinPhim, danhSachGhe } = useSelector((state) => state.home.boxOffice);
-    const ticketMovie = useSelector((state) => state.booking.ticketMovie);
 
-    if (!thongTinPhim || !danhSachGhe) {
-        history.push("/");
-    }
+    const ticketMovie = useSelector((state) => state.booking.ticketMovie);
+    const { thongTinPhim, danhSachGhe } = useSelector((state) => state.home.boxOffice);
+
+    useEffect(() => {
+        setTimeout(() => {
+            if (!thongTinPhim || !danhSachGhe) history.push("/");
+        });
+
+        clearTimeout();
+    });
 
     return (
         <div className={styles.body}>
@@ -46,7 +51,9 @@ function Booking() {
                                     <div className={styles.timeInfo}>
                                         <div className={styles.date}>
                                             <span>Date</span>
-                                            <p>{thongTinPhim?.ngayChieu}</p>
+                                            <p style={{ lineBreak: "anywhere" }}>
+                                                {thongTinPhim?.ngayChieu}
+                                            </p>
                                         </div>
 
                                         <div className={styles.time}>

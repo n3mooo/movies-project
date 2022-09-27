@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./style.module.css";
 import bgCinemas from "assets/bg-cinemas.jpg";
 import { Container, Spinner, Tab, Tabs } from "react-bootstrap";
@@ -24,6 +24,14 @@ function Theater() {
     if (!cinemas && !theater) {
         history.push("/");
     }
+
+    useEffect(() => {
+        setTimeout(() => {
+            if (!cinemas && !theater) history.push("/");
+        });
+
+        clearTimeout();
+    });
 
     return (
         <>

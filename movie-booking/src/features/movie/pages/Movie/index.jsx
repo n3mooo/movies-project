@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Container, Tab, Tabs } from "react-bootstrap";
 import styles from "./style.module.css";
 import { useSelector } from "react-redux";
@@ -17,6 +17,14 @@ function Movie() {
     if (!movies) {
         history.push("/");
     }
+
+    useEffect(() => {
+        setTimeout(() => {
+            if (!movies) history.push("/");
+        });
+
+        clearTimeout();
+    });
 
     return (
         <>

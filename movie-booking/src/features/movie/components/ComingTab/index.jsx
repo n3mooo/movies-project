@@ -12,7 +12,7 @@ function ComingTab(props) {
         action: false,
     });
 
-    const moviesComingSoon = props.movies.filter((item) => item.sapChieu === true);
+    const moviesComingSoon = props.movies?.filter((item) => item.sapChieu === true);
 
     return (
         <div className={styles.main}>

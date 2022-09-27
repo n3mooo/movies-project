@@ -18,7 +18,7 @@ function ShowingTab(props) {
         action: false,
     });
 
-    const moviesShowing = props.movies.filter((item) => item.dangChieu === true);
+    const moviesShowing = props.movies?.filter((item) => item.dangChieu === true);
 
     const fetchMovieDetail = async (id) => {
         await dispatch(fetchMovieDetailAction(id));

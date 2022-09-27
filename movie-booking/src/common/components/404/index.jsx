@@ -1,11 +1,11 @@
-import clsx from "clsx";
+// import clsx from "clsx";
 import React from "react";
-import styles from "./style.module.css";
+// import styles from "./style.module.css";
 
 function P404() {
     return (
         <div style={{ background: "#181828", overflow: "hidden", height: "100vh" }}>
-            <a href='' target='_blank'>
+            {/* <a href='' target='_blank'>
                 <header className={styles.topHeader} />
                 <div>
                     <div className={styles.starsec} />
@@ -40,7 +40,7 @@ function P404() {
                         <a href target='_blank' className={styles.eNavLink} />
                     </div>
                 </div>
-            </section>
+            </section> */}
         </div>
     );
 }

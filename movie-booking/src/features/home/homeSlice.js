@@ -12,7 +12,7 @@ const initialState = {
     movies: null,
     selectedMovie: null,
     cinemas: null,
-    boxOffice: null,
+    boxOffice: [],
 };
 
 const homeSlice = createSlice({

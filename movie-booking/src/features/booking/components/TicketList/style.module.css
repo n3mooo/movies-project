@@ -84,3 +84,16 @@ button.seatBox {
     background-color: transparent;
     border-color: #f8db46;
 }
+
+@media screen and (max-width: 992px) {
+    .boxTicket {
+        max-width: 60% !important;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .boxTicket {
+        max-width: 100% !important;
+    }
+}
+
