@@ -1,6 +1,5 @@
 import clsx from "clsx";
-import { Carousel, Container } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Button, Carousel, Container } from "react-bootstrap";
 import styles from "./style.module.css";
 
 function CarouselBs(props) {
@@ -32,15 +31,15 @@ function CarouselBs(props) {
                             The fastest, most convenient and easy to use movie ticket booking
                             system. Choose a seat and fully enjoy a work of cinematic art.
                         </span>
-                        <Link
-                            to='/'
+                        <Button
                             className={clsx("btn btnPrimary btnBlue fadeInLeft", styles.btnStarted)}
-                            style={{ animationDelay: "400ms" }}>
+                            style={{ animationDelay: "400ms" }}
+                            onClick={() => props.executeScroll()}>
                             Get started
-                        </Link>
+                        </Button>
                     </div>
                 </Container>
-                <Link className={styles.btnScroll} to='#section-2'></Link>
+                <Button className={styles.btnScroll} onClick={() => props.executeScroll()}></Button>
             </div>
         </section>
     );

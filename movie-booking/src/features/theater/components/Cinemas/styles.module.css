@@ -145,8 +145,24 @@ p {
     background-color: rgba(5, 6, 15, 0.1) !important;
 }
 
+@media screen and (min-width: 655px) {
+    .main {
+        height: 140vh;
+    }
+}
+
+@media screen and (max-width: 655px) {
+    .main {
+        height: 123vh;
+    }
+}
+
 @media screen and (max-width: 576px) {
     .content {
         flex-wrap: wrap;
     }
+
+    /* .main {
+        height: 123vh;
+    } */
 }

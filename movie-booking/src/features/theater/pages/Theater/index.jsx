@@ -47,7 +47,7 @@ function Theater() {
                                 }}></div>
                         </div>
                     </div>
-                    <div className='position-relative' style={{ height: "100vh" }}>
+                    <div className='position-relative' style={{ height: "120vh" }}>
                         <div className={styles.main}>
                             <Container>
                                 <div className={styles.content}>

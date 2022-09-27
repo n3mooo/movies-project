@@ -49,6 +49,7 @@
 }
 
 .main .content .btnStarted {
+    border: none;
     max-width: fit-content;
     margin-top: 20px;
     padding: 1.5em 2.5em !important;
@@ -70,6 +71,12 @@
     bottom: 6.25em;
     border-radius: 3em;
 }
+
+.btnScroll:hover {
+    background-color: transparent !important;
+    border: 0.15em solid #fff !important;
+}
+
 .btnScroll:before {
     position: absolute;
     content: "";

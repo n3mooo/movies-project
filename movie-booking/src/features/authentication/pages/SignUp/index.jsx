@@ -64,6 +64,7 @@ function SignUp() {
 
     useEffect(() => {
         dispatch(authSlice.actions.clear());
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return (

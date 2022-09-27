@@ -6,7 +6,7 @@ import HotMovies from "features/home/components/HotMovies";
 import NowShowing from "features/home/components/NowShowing";
 import TheaterBrand from "features/home/components/TheaterBrand";
 import { fetchMovieScheduleAction } from "features/theater/action";
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { Container, Spinner } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -16,6 +16,9 @@ function Home() {
     const banners = useSelector((state) => state.home.banners);
     const movies = useSelector((state) => state.home.movies);
     const cinemas = useSelector((state) => state.home.cinemas);
+
+    const myRef = useRef(null);
+    const executeScroll = () => myRef?.current.scrollIntoView();
 
     const fetchBanner = async () => {
         await dispatch(fetchBannersAction());
@@ -47,8 +50,8 @@ function Home() {
     }
     return (
         <div>
-            <CarouselBs banners={banners} />
-            <div className='section'>
+            <CarouselBs banners={banners} executeScroll={executeScroll} />
+            <section className='section' ref={myRef}>
                 <Container>
                     <div className='title'>
                         <span>LET EXPLORE</span>
@@ -77,7 +80,7 @@ function Home() {
                         <TheaterBrand cinemas={cinemas} />
                     </Container>
                 </div>
-            </div>
+            </section>
         </div>
     );
 }

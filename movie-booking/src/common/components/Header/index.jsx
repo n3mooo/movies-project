@@ -30,8 +30,8 @@ function Header() {
         if (userProfile) {
             return (
                 <>
-                    <Nav.Link
-                        href=''
+                    <NavLink
+                        to='/user'
                         className='text-black'
                         style={{
                             fontSize: 14,
@@ -40,13 +40,13 @@ function Header() {
                             padding: "0.5rem",
                         }}>
                         Hi, {userProfile.hoTen}
-                    </Nav.Link>
-                    <Nav.Link
-                        href=''
+                    </NavLink>
+                    <NavLink
+                        to=''
                         className={clsx("btn btnPrimary btnGray", styles.btnNav)}
                         onClick={handleLogOut}>
                         Log out
-                    </Nav.Link>
+                    </NavLink>
                 </>
             );
         }
@@ -67,9 +67,7 @@ function Header() {
             <Container className={styles.container}>
                 <div className={styles.navBar}>
                     <div className='d-flex justify-content-between'>
-                        <Navbar.Brand href='/' className={styles.navBrand}>
-                            iMovie
-                        </Navbar.Brand>
+                        <Navbar.Brand className={styles.navBrand}>CINEGRAM</Navbar.Brand>
                         <Navbar.Toggle
                             aria-controls='responsive-navbar-nav'
                             style={{ boxShadow: "none", border: "none", color: "#000" }}>

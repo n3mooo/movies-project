@@ -118,15 +118,17 @@ img {
 
 .btnGray {
     color: #fff !important;
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: rgba(0, 0, 0, 0.8) !important;
+    border-color: rgba(0, 0, 0, 0.8) !important;
 }
 
 .btnGray:hover {
     background-color: rgba(0, 0, 0, 0.75) !important;
+    border-color: rgba(0, 0, 0, 0.75) !important;
 }
 
 .section {
-    padding: 40px 0;
+    padding: 40px 0 0;
 }
 
 .title {
