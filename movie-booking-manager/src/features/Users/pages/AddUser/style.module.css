@@ -1,10 +1,19 @@
 .container {
     width: 60%;
-    margin: 0 auto;
+    margin: 20px auto 0;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 12px;
+    
 }
 .title {
     text-align: center;
     margin: 20px auto;
     font-size: 40px;
     font-weight: bold;
+}
+@media only screen and(min-width: 576px) and (max-width:768px) {
+label {
+    font-size: 10px;
+}
 }

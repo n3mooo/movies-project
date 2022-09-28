@@ -62,7 +62,7 @@ function AddUser() {
   return (
     <div>
       <Navbar />
-      <div className={style.title}>Add user</div>
+
       <Form
         {...layout}
         name="nest-messages"
@@ -70,6 +70,7 @@ function AddUser() {
         validateMessages={validateMessages}
         className={style.container}
       >
+        <div className={style.title}>Add user</div>
         <Form.Item
           name={"taiKhoan"}
           label="Tài Khoản"

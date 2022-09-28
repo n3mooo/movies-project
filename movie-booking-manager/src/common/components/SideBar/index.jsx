@@ -4,7 +4,6 @@ import style from "./style.module.css";
 import { FaBars } from "react-icons/fa";
 import {
   AiOutlineClose,
-  AiFillSetting,
   AiFillCalendar,
   AiOutlineUserAdd,
 } from "react-icons/ai";
@@ -13,25 +12,13 @@ import { useSelector } from "react-redux";
 
 function Navbar() {
   const [sidebar, setSideBar] = useState(false);
+  const logInData = useSelector((state) => {
+    return state.auth.profile;
+  });
   const showSideBar = () => {
     setSideBar(!sidebar);
   };
-  const userProfile = useSelector((state) => {
-    return state.auth.profile;
-  });
-  const rederInfo = () => {
-    if (!userProfile) {
-      return (
-        <>
-          <NavLink activeClassName={style.active} to={"#"}>
-            Hi, {userProfile.hoTen}
-          </NavLink>
-          <NavLink to={"./"}>Log Out</NavLink>
-        </>
-      );
-    }
-  };
-  
+
   const SideBarData = [
     {
       title: "List Film",
@@ -43,7 +30,7 @@ function Navbar() {
       path: "/films/addnew",
       icon: <BsFilm />,
     },
-    
+
     {
       title: "User List",
       path: "/users",
@@ -54,7 +41,7 @@ function Navbar() {
       path: "/users/adduser",
       icon: <AiOutlineUserAdd />,
     },
-    
+
     {
       title: "Show Time",
       path: "/showtime",
@@ -79,16 +66,36 @@ function Navbar() {
             <Link to={"#"} className={style.menubar} onClick={showSideBar}>
               <AiOutlineClose />
             </Link>
-            {SideBarData.map((item, index) => {
-              return (
-                <li key={index} className={style.navText}>
-                  <NavLink to={item.path} activeClassName={style.active} exact>
-                    {item.icon}
-                    <span>{item.title}</span>
-                  </NavLink>
-                </li>
-              );
-            })}
+            <li className={style.navText}>
+              <NavLink to={SideBarData[0].path} activeClassName={style.active} exact>
+                {SideBarData[0].icon}
+                <span>{SideBarData[0].title}</span>
+              </NavLink>
+            </li>
+            <li className={style.navText}>
+              <NavLink to={SideBarData[1].path} activeClassName={style.active} exact>
+                {SideBarData[1].icon}
+                <span>{SideBarData[1].title}</span>
+              </NavLink>
+            </li>
+            <li className={style.navText}>
+              <NavLink to={SideBarData[2].path} activeClassName={style.active} exact>
+                {SideBarData[2].icon}
+                <span>{SideBarData[2].title}</span>
+              </NavLink>
+            </li>
+            <li className={style.navText}>
+              <NavLink to={SideBarData[3].path} activeClassName={style.active} exact>
+                {SideBarData[3].icon}
+                <span>{SideBarData[3].title}</span>
+              </NavLink>
+            </li>
+            <li className={style.navText}>
+              <NavLink to={SideBarData[4].path} activeClassName={style.active} exact>
+                {SideBarData[4].icon}
+                <span>{SideBarData[4].title}</span>
+              </NavLink>
+            </li>
           </div>
         </ul>
       </div>

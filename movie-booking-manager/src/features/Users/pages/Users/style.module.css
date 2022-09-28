@@ -30,3 +30,9 @@ span {
   .main {
     padding: 10px;
   }
+
+  @media only screen and (max-width: 576px) {
+    .ant-table-thead  {
+      width: 100%;
+    }
+  }

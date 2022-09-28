@@ -10,12 +10,15 @@ import {
 import axios from "axios";
 import moment from "moment";
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import Navbar from "../../../../common/components/SideBar";
+import { addNewFilm } from "../../action";
 import style from "../Addnew/style.module.css";
 
 function AddNew() {
   const [componentSize, setComponentSize] = useState("default");
+  const dispatch = useDispatch();
   const onFormLayoutChange = ({ size }) => {
     setComponentSize(size);
   };
@@ -41,48 +44,40 @@ function AddNew() {
   const handleChangeHot = (e) => {
     setIsHot(e);
   };
-  const history = useHistory()
+  const history = useHistory();
   const goToListFilms = () => {
-    history.push("/films")
-  }
+    history.push("/films");
+  };
   const onFinish = (values) => {
+    // const newImgData = delete image.preview;
     const data = {
       ...values,
       hinhAnh: image,
       dangChieu: isShowing,
       sapChieu: isUpComing,
       hot: isHot,
-      maNhom:"GP02"
+      maNhom: "GP02",
     };
-    console.log(data);
     let formData = new FormData();
-
     formData.append("maPhim", Math.floor(Math.random() * 100000));
     formData.append("tenPhim", data.tenPhim);
     formData.append("moTa", data.moTa);
     formData.append("trailer", data.trailer);
-    formData.append("ngayKhoiChieu", moment(data.ngayKhoiChieu).format("DD/MM/YYYY"));
+    formData.append(
+      "ngayKhoiChieu",
+      moment(data.ngayKhoiChieu).format("DD/MM/YYYY")
+    );
     formData.append("sapChieu", data.sapChieu);
     formData.append("dangChieu", data.dangChieu);
     formData.append("hot", data.hot);
     formData.append("maNhom", data.maNhom);
     formData.append("danhGia", data.danhGia);
-    formData.append("hinhAnh",data.hinhAnh);
-    const addNewFilm = async () => {
-      try {
-        const res = await axios({
-          url:"https://movienew.cybersoft.edu.vn/api/QuanLyPhim/ThemPhimUploadHinh",
-          method: "POST",
-          data: formData,
-          headers: {
-            TokenCybersoft:
-              "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0ZW5Mb3AiOiJGcm9udCBFbmQgNzIiLCJIZXRIYW5TdHJpbmciOiIxNC8wMi8yMDIzIiwiSGV0SGFuVGltZSI6IjE2NzYzMzI4MDAwMDAiLCJuYmYiOjE2NTAzODc2MDAsImV4cCI6MTY3NjQ4MDQwMH0.e3UrKdKqwFislz0cqribEEthuaW4HOuD4xwr1CTRQwg",
-          },
-        })
-        goToListFilms()
-      } catch(err) {}
-    }
-    addNewFilm()
+    formData.append("hinhAnh", data.hinhAnh);
+    addNewFilmAction(formData);
+    goToListFilms();
+  };
+  const addNewFilmAction = async (formData) => {
+    dispatch(addNewFilm(formData));
   };
   return (
     <div>
@@ -113,16 +108,16 @@ function AddNew() {
               </Radio.Group>
             </Form.Item>
             <Form.Item label="Tên Phim" name="tenPhim">
-              <Input />
+              <Input required/>
             </Form.Item>
             <Form.Item label="Trailer" name={"trailer"}>
-              <Input />
+              <Input required />
             </Form.Item>
             <Form.Item label="Mô tả" name={"moTa"}>
-              <Input />
+              <Input  required/>
             </Form.Item>
             <Form.Item label="Ngày Khởi chiếu" name={"ngayKhoiChieu"}>
-              <DatePicker format={"DD/MM/YYYY"}/>
+              <DatePicker  required format={"DD/MM/YYYY"} />
             </Form.Item>
             <Form.Item label="Đang Chiếu">
               <Switch
@@ -143,7 +138,7 @@ function AddNew() {
               <Switch name={"hot"} checked={isHot} onChange={handleChangeHot} />
             </Form.Item>
             <Form.Item label="Số sao" name={"danhGia"}>
-              <InputNumber />
+              <InputNumber required/>
             </Form.Item>
             <Form.Item label="Hình Ảnh">
               <Input
@@ -156,7 +151,7 @@ function AddNew() {
               )}
             </Form.Item>
             <Form.Item label="Tác vụ">
-              <Button htmlType="submit" type="primary" >
+              <Button htmlType="submit" type="primary">
                 Thêm mới
               </Button>
             </Form.Item>

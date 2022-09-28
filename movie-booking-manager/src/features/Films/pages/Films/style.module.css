@@ -30,3 +30,24 @@ span {
 .main {
   padding: 10px;
 }
+@media only screen and (max-width:576px) {
+  .action {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .action a {
+    margin: 0;
+    text-align: center;
+  }
+  .content {
+    padding: 0;
+  }
+  .container {
+    padding: 8px;
+  }
+  .ant-table-cell {
+    width: 20%;
+  }
+}

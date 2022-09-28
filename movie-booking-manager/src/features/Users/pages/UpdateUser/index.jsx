@@ -38,20 +38,25 @@ function UpdateUser() {
   const goToUsers = () => {
     history.push("/users");
   };
+  const userData = useSelector((state) => {
+    return state.user.selectedUser;
+  });
+
   const handleChange = (e) => {
     console.log(e);
   };
   const onFinish = (values) => {
-    const data = {...values,maNhom : userData.maNhom}
+    const val = delete values.loaiNguoiDung;
+    console.log(val);
+    const val2 = delete val.thongTinDatVe;
+    const data = {...val2,maNhom : userData.maNhom}
     dispatch(updateUserAction(data))
   };
   
   const userTypes = useSelector((state) => {
     return state.user.userTypes;
   });
-  const userData = useSelector((state) => {
-    return state.user.selectedUser;
-  });
+  
   console.log(userData)
   useEffect(() => {
     fetchUserDetail();
@@ -60,13 +65,14 @@ function UpdateUser() {
   return (
     <div>
       <Navbar />
-      <div className={style.title}>Update User</div>
-      <Form
+      
+      {userData && (
+        <Form
         {...layout}
         name="nest-messages"
         onFinish={onFinish}
         validateMessages={validateMessages}
-        className={style.container}
+        className={style.form}
         fields={[
           {
             name: "taiKhoan",
@@ -95,6 +101,7 @@ function UpdateUser() {
           },
         ]}
       >
+        <div className={style.title}>Update User</div>
         <Form.Item
           name={"taiKhoan"}
           label="Tài Khoản"
@@ -175,6 +182,7 @@ function UpdateUser() {
           </Button>
         </Form.Item>
       </Form>
+      )}
     </div>
   );
 }

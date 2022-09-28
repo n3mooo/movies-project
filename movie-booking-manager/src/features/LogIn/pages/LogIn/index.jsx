@@ -1,87 +1,76 @@
 import { Input, Button } from "antd";
 import { useFormik } from "formik";
-import React, { useState } from "react";
-import instance from "../../../../api/instance";
+import React, { useEffect, useState } from "react";
 import style from "./style.module.css";
 import * as yup from "yup";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
+import { signIn } from "../../action";
 
 function LogIn() {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
+  const history = useHistory();
+  const logInData = useSelector((state) => {
+    return state.auth.profile;
+  });
   const schema = yup.object({
     taiKhoan: yup.string().required("*Trường này bắt buộc nhập"),
     matKhau: yup.string().required("*Trường này bắt buộc nhập"),
   });
-  const [isLoading, setIsLoading] = useState(false);
+
   const formik = useFormik({
     initialValues: {
       taiKhoan: "",
       matKhau: "",
     },
     onSubmit: (values) => {
-      console.log(values);
-      const loginUser = { ...values};
-      signIn(values);
+      signInAction(values);
+      
     },
     validationSchema: schema,
   });
-  const signIn = async (user) => {
-    try {
-      setIsLoading(true);
-      const res = await instance.request({
-        url: "/api/QuanLyNguoiDung/DangNhap",
-        method: "POST",
-        data: user,
-      });
-      setIsLoading(false);
-      localStorage.setItem("token", res.data.content.accessToken)
-      const profile = {...res.data.content}
-      delete profile.accessToken;
-      console.log(res.data);
-      dispatch({
-        type:"auth/SET_PROFILE",
-        payload:profile,
-      })
-    } catch (err) {
-      console.log(err);
-    } finally {
-      setIsLoading(false);
-    }
+  const signInAction = async (user) => {
+    dispatch(signIn(user));
   };
-  const history= useHistory()
-  const handleSubmit = () => {
-    history.push("/films")
-  }
+  useEffect(()=>{
+    if (logInData) {
+      history.push("/films");
+    }
+  },[logInData])
+  
   return (
-    <div>
-      <h2 className={style.title}>SIGN IN</h2>
-      <form className={style.form} onSubmit={handleSubmit}>
-        <Input
-          name="taiKhoan"
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          className={style.input}
-          type="text"
-          placeholder="User Name"
-        />
-        {formik.touched.taiKhoan && formik.errors.taiKhoan && (
-          <p className={style.error}>{formik.errors.taiKhoan}</p>
-        )}
-        <Input
-          name="matKhau"
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          className={style.input}
-          type="password"
-          placeholder="Password"
-        />
-        {formik.touched.matKhau && formik.errors.matKhau && (
-          <p className={style.error}>{formik.errors.matKhau}</p>
-        )}
-        <Button htmlType="submit" type="primary" loading={isLoading} >
-          Sign In
-        </Button>
+    <div className={style.container}>
+      <h1>Login</h1>
+      <form onSubmit={formik.handleSubmit}>
+        <div className={style.content}>
+          <input
+            type={"text"}
+            name={"taiKhoan"}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+          ></input>
+          <label>Tài Khoản</label>
+
+          {formik.touched.taiKhoan && formik.errors.taiKhoan && (
+            <span className={style.error}>{formik.errors.taiKhoan}</span>
+          )}
+        </div>
+        <div className={style.content}>
+          <input
+            type={"password"}
+            name={"matKhau"}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+          ></input>
+          <label>Mật khẩu</label>
+
+          {formik.touched.matKhau && formik.errors.matKhau && (
+            <span className={style.error}>{formik.errors.matKhau}</span>
+          )}
+        </div>
+        <button className={style.btn} type="submit">
+          Login
+        </button>
       </form>
     </div>
   );

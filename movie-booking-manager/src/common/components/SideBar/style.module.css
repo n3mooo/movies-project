@@ -77,3 +77,37 @@ span {
     margin-left: 16px;
 }
 
+@media only screen and (max-width: 768px) {
+    .navText {
+        margin-left: 0;
+    }
+    .navText a {
+        font-size: 12px;
+        padding: 0 2px;
+        height: 60px;
+        width: 100%;
+        margin-right: 20px;
+        text-align: center;
+    }
+
+}
+@media only screen  and (min-width: 769px) and (max-width: 991px) {
+    .navText {
+        margin-left: 0;
+    }
+    .navText a {
+        font-size: 14px;
+        padding: 0 2px;
+    }
+
+}
+@media only screen and (min-width: 992px) {
+    .navText {
+        margin-left: 8px;
+    }
+    .navText a {
+        width: 80%;
+        font-size: 16px;
+    }
+
+}
