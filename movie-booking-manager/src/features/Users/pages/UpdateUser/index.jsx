@@ -41,15 +41,13 @@ function UpdateUser() {
   const userData = useSelector((state) => {
     return state.user.selectedUser;
   });
-
+  console.log(userData)
   const handleChange = (e) => {
     console.log(e);
   };
   const onFinish = (values) => {
-    const val = delete values.loaiNguoiDung;
-    console.log(val);
-    const val2 = delete val.thongTinDatVe;
-    const data = {...val2,maNhom : userData.maNhom}
+    
+    const data = {...values,maNhom : userData.maNhom}
     dispatch(updateUserAction(data))
   };
   
