@@ -24,10 +24,6 @@ function Detail() {
 
     const descFormat = selectedMovie?.moTa.slice(3, selectedMovie?.moTa.length - 4);
 
-    setTimeout(() => {
-        if (!selectedMovie || !cinemas) history.push("/");
-    }, 2000);
-
     useEffect(() => {
         setTimeout(() => {
             if (!selectedMovie || !cinemas) history.push("/");

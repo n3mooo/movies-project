@@ -41,19 +41,19 @@ function App() {
                 <Header />
                 <Switch>
                     <Route path='/' component={Home} exact></Route>
-                    <PrivateRoute path='/user' component={User} redirectPath='/' />
-                    <PrivateRoute path='/detail/:alias' component={Detail} redirectPath='/signin' />
-                    <PrivateRoute path='/book/:alias' component={Detail} redirectPath='/signin' />
+                    <AuthRoute path='/user' component={User} redirectPath='/' />
+                    <Route path='/detail/:alias' component={Detail} redirectPath='/' />
+                    <Route path='/book/:alias' component={Detail} redirectPath='/' />
                     <PrivateRoute
                         path='/booking/:alias'
                         component={Booking}
                         redirectPath='/signin'
                     />
-                    <PrivateRoute path='/movie' component={Movie} redirectPath='/signin' />
-                    <PrivateRoute path='/theater' component={Theater} redirectPath='/signin' />
+                    <Route path='/movie' component={Movie} redirectPath='/signin' />
+                    <Route path='/theater' component={Theater} redirectPath='/signin' />
                     <AuthRoute path='/signin' component={SignIn} redirectPath='/' />
                     <AuthRoute path='/signup' component={SignUp} redirectPath='/' />
-                    
+
                     {/* <Route path='*' component={P404}></Route> */}
 
                     <Redirect to='/' />
