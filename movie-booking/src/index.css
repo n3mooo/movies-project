@@ -356,7 +356,7 @@ img {
         transform: none;
     }
 }
-× .fadeInDown {
+.fadeInDown {
     -webkit-animation-name: fadeInDown;
     animation-name: fadeInDown;
     -webkit-animation-duration: 1s;

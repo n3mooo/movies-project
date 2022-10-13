@@ -42,7 +42,7 @@ function Header() {
                         Hi, {userProfile.hoTen}
                     </NavLink>
                     <NavLink
-                        to=''
+                        to='/'
                         className={clsx("btn btnPrimary btnGray", styles.btnNav)}
                         onClick={handleLogOut}>
                         Log out
